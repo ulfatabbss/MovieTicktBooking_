@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View,ImageBackground,TouchableOpacity,Image, Dimensions, FlatList, ScrollView } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, Text, View,ImageBackground,TouchableOpacity,Image, Dimensions, FlatList, ScrollView, Alert } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 const data=[
   {
@@ -268,14 +268,19 @@ const timeData=[
 ]
 
 const TicketBookingScreen = ({navigation,route}) => {
-  const [color,setColor]=useState(false)
+  const [color,setColor]=useState(null)
+  const [colors,setColors]=useState(null)
+  const [selectedIndexes, setSelectedIndexes] = useState([]);
+  const [price,setPrice]=useState(0)
   const {data1}=route.params
-  const dateView=({item})=>(
-    <TouchableOpacity>
+ 
+
+  const dateView=({item,index})=>(
+    <TouchableOpacity onPress={()=>setColors(index)}>
        <View
     style={{height:'95%',
     width:60,alignSelf:'center',borderRadius:30,justifyContent:'center',borderWidth:0.5,
-    borderColor:'white',marginRight:7,}}>
+    borderColor:'white',marginRight:7,backgroundColor:colors==index?"rgba(255, 85, 36, 1)":'black'}}>
       <Text
               style={styles.tx1}>
                 {item.date}
@@ -292,13 +297,13 @@ const TicketBookingScreen = ({navigation,route}) => {
     </TouchableOpacity>
    
   )
-  const timeView=({item})=>(
+  const timeView=({item,index})=>(
     
-    <TouchableOpacity>
+    <TouchableOpacity onPress={()=>setColor(index)}>
       <View
     style={{height:40,
     width:80,alignSelf:'center',borderRadius:30,justifyContent:'center',borderWidth:0.5,
-    borderColor:'gray',marginRight:7,marginTop:10}}>
+    borderColor:'gray',marginRight:7,marginTop:10,backgroundColor:color==index?"rgba(255, 85, 36, 1)":'black'}}>
       <Text
               style={styles.tx3}>
                 {item.time}
@@ -309,18 +314,42 @@ const TicketBookingScreen = ({navigation,route}) => {
       
     </TouchableOpacity>
   )
-  const VST=({item})=>(
-    <View
-    style={{margin:4,height:20,width:30,}}>
-      <Image
-      style={{height:15,width:22,}}
-      resizeMode='contain'
-      source={item.seat}>
+  useEffect(()=>{
+    setPrice(10*selectedIndexes.length)
 
-      </Image>
+  },[selectedIndexes])
+  const VST = ({ item, index }) => {
+    const isSelected = selectedIndexes.includes(index);
+  
+    const toggleSelection = () => {
+      setSelectedIndexes((prevState) =>
+        prevState.includes(index)
+          ? prevState.filter((i) => i !== index)
+          : [...prevState, index]
+          
+      );
+     
+    
 
-    </View>
-  )
+    console.log(selectedIndexes.length)
+    
+    };
+  
+    return (
+      <TouchableOpacity onPress={toggleSelection} style={{ margin: 4, height: 20, width: 30 }}>
+        <Image
+          style={{
+            height: 15,
+            width: 22,
+            tintColor: isSelected ? 'rgba(255, 85, 36, 1)' : 'white',
+          }}
+          resizeMode="contain"
+          source={item.seat}
+        />
+      </TouchableOpacity>
+    );
+  };
+  
   return (
    <SafeAreaView
    style={{backgroundColor:'black',flex:1}}>
@@ -394,22 +423,26 @@ const TicketBookingScreen = ({navigation,route}) => {
               </Text>
               <Text
               style={styles.tx5}>
-                $ 15.00
+                $ {price}.00
               </Text>
-              
+             
             </View>
-            <TouchableOpacity>
-            <View
-            style={styles.V7}>
-              <Text
-              style={styles.tx6}>
-                Buy Tickets
+            
+              <TouchableOpacity onPress={()=>price!=0?Alert.alert('Seat Booked'):Alert.alert("Please Select Seat")}>
+              <View
+              style={[styles.V7,{backgroundColor:price!=0?'rgba(255, 85, 36, 1)':"gray"}]}>
+                <Text
+                style={styles.tx6}>
+                  Buy Tickets
+  
+                </Text>
+  
+              </View>
+  
+              </TouchableOpacity>
 
-              </Text>
-
-            </View>
-
-            </TouchableOpacity>
+        
+            
             
 
           </View>
@@ -445,7 +478,7 @@ const styles = StyleSheet.create({
   V2:{
     justifyContent:'center',
     alignSelf:'center',
-    height:230,
+    height:220,
     marginTop:15,
     width:Dimensions.get('window').width-40
   },
@@ -503,7 +536,7 @@ const styles = StyleSheet.create({
   tx3:{
     fontSize:16,
     fontWeight:'500',
-    color:'gray',
+    color:'white',
     alignSelf:'center'
   },
   V6:{
@@ -517,8 +550,9 @@ const styles = StyleSheet.create({
     height:'100%',
     width:140,
     borderRadius:20,
-    backgroundColor:'rgba(255, 85, 36, 1)',
-    justifyContent:'center'
+    
+    justifyContent:'center',
+    marginBottom:20,
   },
   tx4:{
     fontSize:14,

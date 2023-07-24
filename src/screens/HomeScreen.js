@@ -1,12 +1,20 @@
 import { Dimensions, FlatList, Image, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useRef } from 'react'
 import Carousel from 'react-native-snap-carousel';
+import {LogBox} from 'react-native';
+
+// Ignore log notification by message:
+LogBox.ignoreLogs(['Warning: ...']);
+
+// Ignore all log notifications:
+LogBox.ignoreAllLogs();
 const data=[
   {
     Img:require('../assets/homePageimg/img1.png'),
     txt:'John Wick: Chapter 4',
     bg:require('../assets/homePageimg/Dbgi.png'),
     txt3:'2h 50m',
+    
     txt4:'8.0 (1,024)',
     txt2:'With the price on his head ever increasing, John Wick uncovers a path to defeating The High Table. But before he can earn his freedom, Wick must face off against a new enemy with powerful alliances across the globe and forces that turn old friends into foes.'
 
@@ -60,7 +68,8 @@ const data=[
 const HomeScreen = ({navigation}) => {
   const crouselRef=useRef(null)
  const entries=[
-  {img:require('../assets/homePageimg/img1.png')},
+  {img:require('../assets/homePageimg/img1.png'),
+    tx1:'John wick chapter 4'},
   {img:require('../assets/homePageimg/img1.png')},
   {img:require('../assets/homePageimg/img1.png')},
   {img:require('../assets/homePageimg/img1.png')},
