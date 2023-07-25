@@ -7,6 +7,7 @@ import SearchScreen from './SearchScreen';
 import TicketScreen from './TicketScreen';
 import UserAccountScreen from './UserAccountScreen';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import Color from '../utilities/color';
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
@@ -20,7 +21,7 @@ const Tabs = () => {
           tabBarInactiveBackgroundColor: 'black',
           tabBarActiveTintColor: 'white',
           tabBarStyle: {
-            height: 70,
+            height: 60,
             width:'100%',
             backgroundColor: 'red',
             alignItems: 'center',paddingBottom:0
@@ -38,7 +39,7 @@ const Tabs = () => {
                   height: focused ? 60 : null,
                   width: 60,
 
-                  backgroundColor: focused ? 'rgba(255, 85, 36, 1)' : 'black',
+                  backgroundColor: focused ? Color.orange : 'black',
                   borderRadius: 90,
                 }}>
                 <Image
@@ -60,7 +61,7 @@ const Tabs = () => {
                   justifyContent: 'center',
                   height: focused ? 60 : 50,
                   width: focused ? 60 : 50,
-                  backgroundColor: focused ? 'rgba(255, 85, 36, 1)' : 'black',
+                  backgroundColor: focused ? Color.orange : 'black',
                   borderRadius: focused?30:null,
                 }}>
                 <Image
@@ -83,7 +84,7 @@ const Tabs = () => {
                   height: focused ? 60 : null,
                   width: 60,
 
-                  backgroundColor: focused ? 'rgba(255, 85, 36, 1)' : 'black',
+                  backgroundColor: focused ? Color.orange : 'black',
                   borderRadius: 90,
                 }}>
                 <Image
@@ -106,7 +107,7 @@ const Tabs = () => {
                   height: focused ? 60 : null,
                   width: 60,
 
-                  backgroundColor: focused ? 'rgba(255, 85, 36, 1)' : 'black',
+                  backgroundColor: focused ? Color.orange : 'black',
                   borderRadius: 90,
                 }}>
                 <Image

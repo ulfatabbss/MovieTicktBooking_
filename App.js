@@ -6,14 +6,18 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MovieDetailsScreen from './src/screens/MovieDetailsScreen';
 import SearchScreen from './src/screens/SearchScreen';
 import TicketBookingScreen from './src/screens/TicketBookingScreen';
+import { ToastProvider } from 'react-native-toast-notifications';
 import TicketScreen from './src/screens/TicketScreen';
 import UserAccountScreen from './src/screens/UserAccountScreen';
 import Tabs from './src/screens/Tabs';
 const Stack = createNativeStackNavigator();
 
+
 const App = () => {
   return (
    
+    <ToastProvider>
+
     
     <NavigationContainer>
     <Stack.Navigator screenOptions={{headerShown:false}}>
@@ -26,6 +30,7 @@ const App = () => {
       <Stack.Screen name="UserAccountScreen" component={UserAccountScreen} />
     </Stack.Navigator>
   </NavigationContainer>
+  </ToastProvider>
   )
 }
 

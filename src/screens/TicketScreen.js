@@ -1,13 +1,14 @@
 import { Dimensions, Image, ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import heading from '../utilities/styles'
 
 const TicketScreen = () => {
   return (
     <SafeAreaView
     style={{flex:1,backgroundColor:'black'}}>
       <Text
-      style={styles.t1}>
+      style={[heading.h3,{alignSelf:'center'}]}>
         My Ticket
 
       </Text>

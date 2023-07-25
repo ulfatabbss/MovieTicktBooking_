@@ -1,6 +1,7 @@
 import { StyleSheet, Text, TextInput, View,Image,Dimensions, ScrollView, FlatList} from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import Color from '../utilities/color'
 const data=[
   {
     Img:require('../assets/homePageimg/img1.png'),
@@ -101,7 +102,8 @@ const styles = StyleSheet.create({
   hpi1:{
     height:20,
     width:20,
-    alignSelf:'center'
+    alignSelf:'center',
+    tintColor:Color.orange,
     
   },
   FV:{
