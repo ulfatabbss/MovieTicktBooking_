@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View,TouchableOpacity,Image } from 'react-native'
+import { FlatList, Text, View,TouchableOpacity,Image } from 'react-native'
 import React from 'react'
 
 
@@ -32,5 +32,3 @@ const CustomFlatList = ({navigation,data}) => {
 }
 
 export default CustomFlatList
-
-const styles = StyleSheet.create({})
