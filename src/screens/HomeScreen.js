@@ -7,7 +7,6 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import React, {useRef} from 'react';
@@ -16,11 +15,7 @@ import {LogBox} from 'react-native';
 import Color from '../utilities/color';
 import heading from '../utilities/styles';
 import CustomFlatList from '../components/CustomFlatList';
-
-// Ignore log notification by message:
 LogBox.ignoreLogs(['Warning: ...']);
-
-// Ignore all log notifications:
 LogBox.ignoreAllLogs();
 const data1 = [
   {

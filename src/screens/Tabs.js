@@ -2,7 +2,6 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from './HomeScreen';
-import MovieDetailsScreen from './MovieDetailsScreen';
 import SearchScreen from './SearchScreen';
 import TicketScreen from './TicketScreen';
 import UserAccountScreen from './UserAccountScreen';
